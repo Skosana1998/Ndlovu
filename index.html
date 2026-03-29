@@ -1,1 +1,996 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ndlovu Care Group | Creating Hope and Development Opportunities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #d50032;
+      --red-dark: #93001f;
+      --red-deep: #6d0017;
+      --white: #ffffff;
+      --light: #faf7f8;
+      --text: #121212;
+      --muted: #5f5f67;
+      --border: rgba(213, 0, 50, 0.12);
+      --shadow: 0 20px 70px rgba(0,0,0,0.10);
+      --shadow-red: 0 22px 60px rgba(213, 0, 50, 0.22);
+      --radius: 28px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(213,0,50,.12), transparent 28%),
+        radial-gradient(circle at left center, rgba(213,0,50,.06), transparent 22%),
+        linear-gradient(180deg, #ffffff 0%, #fff7f9 28%, #ffffff 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(70px);
+      opacity: .18;
+      background: radial-gradient(circle, rgba(213,0,50,.85) 0%, rgba(213,0,50,.18) 45%, transparent 72%);
+      animation: bloodPulse 8s ease-in-out infinite;
+    }
+
+    body::before {
+      top: 6%;
+      left: -120px;
+    }
+
+    body::after {
+      right: -120px;
+      bottom: 10%;
+      animation-delay: -3s;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 96px 0; position: relative; }
+
+    .ticker-wrap {
+      background: linear-gradient(90deg, var(--red-dark), var(--red), var(--red-dark));
+      color: white;
+      overflow: hidden;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      position: relative;
+      z-index: 2;
+    }
+
+    .ticker-row {
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ticker-row:last-child {
+      border-bottom: none;
+    }
+
+    .ticker {
+      display: inline-flex;
+      gap: 44px;
+      padding: 12px 0;
+      min-width: max-content;
+      animation: moveRightToLeft 20s linear infinite;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+
+    .ticker.reverse {
+      animation: moveLeftToRight 22s linear infinite;
+    }
+
+    .ticker span { opacity: 0.96; }
+
+    @keyframes moveRightToLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes moveLeftToRight {
+      from { transform: translateX(-50%); }
+      to { transform: translateX(0); }
+    }
+
+    @keyframes bloodPulse {
+      0%, 100% { transform: scale(1) translateY(0px); opacity: .15; }
+      50% { transform: scale(1.18) translateY(12px); opacity: .24; }
+    }
+      to { transform: translateX(-50%); }
+    }
+
+    .topline {
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      color: var(--red);
+      text-align: center;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 82px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand strong {
+      font-size: 1.08rem;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+
+    .brand span {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-weight: 700;
+      color: #31343a;
+      transition: .2s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: .2s ease;
+    }
+
+    .nav-links a:hover { color: var(--red); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: .96rem;
+      transition: .25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+      color: white;
+      box-shadow: var(--shadow-red);
+    }
+
+    .btn-primary:hover,
+    .btn-outline:hover { transform: translateY(-2px); }
+
+    .btn-outline {
+      background: white;
+      color: var(--red);
+      border-color: rgba(213,0,50,.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.05);
+    }
+
+    .hero {
+      padding: 76px 0 62px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(213,0,50,.08);
+      color: var(--red);
+      text-transform: uppercase;
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .7px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(213,0,50,.10);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 4.6vw, 5rem);
+      line-height: .98;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+      max-width: 760px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 720px;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .floating-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .floating-points span {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(213,0,50,.14);
+      color: var(--red);
+      font-weight: 800;
+      box-shadow: 0 12px 24px rgba(0,0,0,.05);
+    }
+
+    .hero-card {
+      min-height: 620px;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(213,0,50,.88), rgba(109,0,23,.96)),
+        url('https://images.unsplash.com/photo-1576765608866-5b51046452be?auto=format&fit=crop&w=1400&q=80') center/cover;
+      box-shadow: var(--shadow-red);
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+      isolation: isolate;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      inset: auto 8% -90px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 46% 54% 58% 42% / 40% 45% 55% 60%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), rgba(213,0,50,.55) 35%, rgba(109,0,23,.88) 75%);
+      filter: blur(6px);
+      opacity: .78;
+      animation: liquidFloat 7s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.25), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.34));
+      z-index: -1;
+    }
+
+    .glow-line, .glow-line.two, .glow-line.three {
+      position: absolute;
+      height: 2px;
+      left: -30%;
+      right: -30%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.85), transparent);
+      opacity: .8;
+      transform: rotate(-12deg);
+      animation: sweep 5.5s linear infinite;
+    }
+
+    .glow-line { top: 18%; }
+    .glow-line.two { top: 46%; animation-duration: 7s; }
+    .glow-line.three { top: 74%; animation-duration: 8.4s; }
+
+    @keyframes sweep {
+      from { transform: translateX(0) rotate(-12deg); }
+      to { transform: translateX(-18%) rotate(-12deg); }
+    }
+
+    @keyframes liquidFloat {
+      0%, 100% { transform: translateY(0px) scale(1); border-radius: 46% 54% 58% 42% / 40% 45% 55% 60%; }
+      50% { transform: translateY(-18px) scale(1.05); border-radius: 58% 42% 44% 56% / 56% 40% 60% 44%; }
+    }
+      to { transform: translateX(-18%) rotate(-12deg); }
+    }
+
+    .hero-card-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      border-radius: 24px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(18px);
+      padding: 24px;
+      color: white;
+    }
+
+    .hero-card-content h3 {
+      font-size: 1.55rem;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .hero-card-content p {
+      color: rgba(255,255,255,.90);
+      margin: 0 0 16px;
+      font-size: .98rem;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .mini-stats div {
+      background: rgba(255,255,255,.10);
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .mini-stats strong { display: block; font-size: 1.15rem; }
+    .mini-stats span { font-size: .82rem; color: rgba(255,255,255,.82); }
+
+    .section-title {
+      max-width: 800px;
+      margin-bottom: 26px;
+    }
+
+    .tag {
+      color: var(--red);
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -1.2px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p,
+    .card p,
+    .service-card p,
+    .project-card p,
+    .impact-card p,
+    .contact-info p { color: var(--muted); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .card, .service-card, .project-card, .impact-card, .contact-box, .form-box {
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before, .service-card::before, .project-card::before, .impact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--red-dark), var(--red), transparent);
+    }
+
+    .card h3, .service-card h3, .project-card h3, .impact-card h3 {
+      font-size: 1.22rem;
+      margin-bottom: 10px;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(213,0,50,.14);
+      color: var(--red);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .services-grid, .projects-grid, .impact-grid, .partner-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .services-grid { grid-template-columns: repeat(4, 1fr); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .impact-grid { grid-template-columns: repeat(3, 1fr); }
+    .partner-grid { grid-template-columns: repeat(5, 1fr); }
+
+    .service-card:hover, .project-card:hover, .impact-card:hover {
+      transform: translateY(-6px);
+      transition: .25s ease;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-red);
+    }
+
+    .statement-band {
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+      color: white;
+      border-radius: 34px;
+      box-shadow: var(--shadow-red);
+      overflow: hidden;
+    }
+
+    .statement-inner {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: stretch;
+    }
+
+    .statement-copy {
+      padding: 42px;
+    }
+
+    .statement-copy h3 {
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.02;
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+    }
+
+    .statement-copy p {
+      color: rgba(255,255,255,.88);
+      margin-bottom: 18px;
+    }
+
+    .statement-visual {
+      min-height: 360px;
+      background:
+        linear-gradient(rgba(255,255,255,.06), rgba(255,255,255,.04)),
+        url('https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1400&q=80') center/cover;
+    }
+
+    .partner-box {
+      min-height: 120px;
+      border-radius: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .donation {
+      background: linear-gradient(180deg, #fff 0%, #fff4f6 100%);
+    }
+
+    .donation-box {
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-deep) 100%);
+      color: white;
+      border-radius: 34px;
+      padding: 42px;
+      box-shadow: var(--shadow-red);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .donation-box::after {
+      content: '';
+      position: absolute;
+      right: -90px;
+      top: -90px;
+      width: 220px;
+      height: 220px;
+      background: rgba(255,255,255,.08);
+      border-radius: 50%;
+    }
+
+    .donation-box p { color: rgba(255,255,255,.88); max-width: 820px; margin: 14px 0 22px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 24px;
+    }
+
+    .contact-info ul {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    form { display: grid; gap: 14px; }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid rgba(0,0,0,.08);
+      background: #fff;
+      padding: 16px 18px;
+      border-radius: 16px;
+      font: inherit;
+      color: var(--text);
+      outline: none;
+      transition: .2s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: rgba(213,0,50,.35);
+      box-shadow: 0 0 0 4px rgba(213,0,50,.08);
+    }
+
+    textarea { min-height: 170px; resize: vertical; }
+
+    footer {
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,.06);
+      padding: 28px 0 40px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .grid-2,
+      .statement-inner,
+      .contact-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid, .impact-grid { grid-template-columns: 1fr 1fr; }
+      .partner-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-card { min-height: 460px; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .section { padding: 72px 0; }
+      .services-grid,
+      .projects-grid,
+      .impact-grid,
+      .partner-grid,
+      .mini-stats { grid-template-columns: 1fr; }
+      .ticker { gap: 26px; font-size: 12px; }
+      .card, .service-card, .project-card, .impact-card, .contact-box, .form-box, .donation-box, .statement-copy { padding: 22px; }
+      h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ticker-wrap">
+    <div class="ticker-row">
+      <div class="ticker">
+        <span>Ndlovu Care Group</span>
+        <span>Healthcare</span>
+        <span>Community Development</span>
+        <span>Skills Training</span>
+        <span>Youth Development</span>
+        <span>Hope</span>
+        <span>Impact</span>
+        <span>Donation</span>
+        <span>Partnership</span>
+        <span>Ndlovu Care Group</span>
+        <span>Healthcare</span>
+        <span>Community Development</span>
+        <span>Skills Training</span>
+        <span>Youth Development</span>
+        <span>Hope</span>
+        <span>Impact</span>
+        <span>Donation</span>
+        <span>Partnership</span>
+      </div>
+    </div>
+    <div class="ticker-row">
+      <div class="ticker reverse">
+        <span>Trust</span>
+        <span>Innovation</span>
+        <span>Care</span>
+        <span>Research</span>
+        <span>Development</span>
+        <span>Community First</span>
+        <span>Partner With Us</span>
+        <span>Donate</span>
+        <span>Trust</span>
+        <span>Innovation</span>
+        <span>Care</span>
+        <span>Research</span>
+        <span>Development</span>
+        <span>Community First</span>
+        <span>Partner With Us</span>
+        <span>Donate</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="topline">Creating hope and development opportunities to build healthy, responsible and self-sustaining communities.</div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <strong>Ndlovu Care Group</strong>
+        <span>Creating Hope and Development Opportunities</span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#impact">Impact</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#donate" class="btn btn-primary">Donate Now</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">30+ Years of service • Sekhukhune District • Limpopo</div>
+          <h1>Creating hope and development opportunities to build healthy, responsible and self-sustaining communities.</h1>
+          <p>
+            For the past 30 years, Ndlovu Care Group has offered healthcare services and community development through a holistic approach in the Sekhukhune District of Limpopo as a not for profit organisation.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-primary">Read More</a>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+          </div>
+
+          <div class="floating-points">
+            <span>Health Care Services</span>
+            <span>Community Development</span>
+            <span>Child & Youth Needs</span>
+            <span>WASH</span>
+            <span>Research</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div style="position:absolute;top:10%;right:10%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,.25), rgba(255,255,255,0) 65%);filter:blur(2px);animation:liquidFloat 6s ease-in-out infinite;"></div>
+          <div style="position:absolute;bottom:16%;left:8%;width:18px;height:140px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,.25), rgba(213,0,50,.65), rgba(109,0,23,.95));opacity:.55;filter:blur(1px);animation:liquidFloat 5.5s ease-in-out infinite;"></div>
+          <div style="position:absolute;bottom:12%;left:13%;width:10px;height:90px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(213,0,50,.58), rgba(109,0,23,.9));opacity:.5;animation:liquidFloat 7s ease-in-out infinite;"></div>
+          <div class="glow-line"></div>
+          <div class="glow-line two"></div>
+          <div class="glow-line three"></div>
+          <div class="hero-card-content">
+            <h3>Integrated, evidence-based solutions for improved cohesive community development.</h3>
+            <p>
+              Ndlovu Care Group works with communities to design and implement innovative programmes addressing healthcare, child and youth needs, WASH, infrastructure support and research.
+            </p>
+            <div class="mini-stats">
+              <div><strong>30+</strong><span>Years of service</span></div>
+              <div><strong>27</strong><span>Villages in Moutse</span></div>
+              <div><strong>5</strong><span>Vocational trades</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">Vision & Mission</span>
+          <h2>Working with communities to build healthier, stronger and more self-sustaining futures.</h2>
+          <p>
+            The organisation’s vision is creating hope and development opportunities to build healthy, responsible and self-sustaining communities.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Our Vision</h3>
+            <p>Creating hope and development opportunities to build healthy, responsible and self-sustaining communities.</p>
+            <div class="pill-list">
+              <span class="pill">Health Care</span>
+              <span class="pill">Research</span>
+              <span class="pill">Child & Youth</span>
+              <span class="pill">Infrastructure</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>How the journey started</h3>
+            <p>
+              Six days after the first free elections in 1994, Liesje and Hugo Tempelman started the construction of the Ndlovu Medical Centre in Elandsdoorn, a township in Moutse.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">Programmes</span>
+          <h2>Integrated programmes supporting people, families and communities.</h2>
+          <p>
+            Ndlovu Care Group’s work addresses healthcare, child and youth needs, water and sanitation, infrastructure support and practical skills development.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="icon">01</div>
+            <h3>Child & Youth Development</h3>
+            <p>Childcare programmes focus on supporting young people in their physical, mental, social and cultural development.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">02</div>
+            <h3>Water, Sanitation & Hygiene</h3>
+            <p>Sustainable access to safe water, sanitation and hygiene remains one of the essential needs for healthy community life.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">03</div>
+            <h3>Infrastructure Support</h3>
+            <p>Supporting safe and secure homes for child-headed households while maintaining organisational infrastructure.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">04</div>
+            <h3>Skills Development</h3>
+            <p>Practical, hands-on training that equips individuals with the skills needed to access employment and build livelihoods.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container statement-band">
+        <div class="statement-inner">
+          <div class="statement-copy">
+            <span class="tag" style="color:#fff;">Community Development</span>
+            <h3>From healthcare access to youth empowerment, every programme is designed to build long-term impact.</h3>
+            <p>
+              The Ndlovu model brings together health, education, research, infrastructure and social support through an integrated approach rooted in community realities.
+            </p>
+            <a href="#projects" class="btn" style="background:#fff;color:var(--red);">See Focus Projects</a>
+          </div>
+          <div class="statement-visual"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">Focus Projects</span>
+          <h2>Projects focused on skills, nutrition, hearing care and disability support.</h2>
+          <p>
+            These focus projects reflect the organisation’s broad impact across education, health and inclusive community care.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="icon">A</div>
+            <h3>Vocational Training Centre</h3>
+            <p>Youth unemployment continues to be a major crisis in South Africa, and the vocational school trains learners in Plumbing, Carpentry, Bricklaying, Electrical Work and Painting.</p>
+          </article>
+
+          <article class="project-card">
+            <div class="icon">B</div>
+            <h3>Nutritional</h3>
+            <p>The first Ndlovu Nutritional Unit was established in 1996 and supports children and families affected by malnourishment.</p>
+          </article>
+
+          <article class="project-card">
+            <div class="icon">C</div>
+            <h3>Audiology</h3>
+            <p>Ndlovu Wits Audiology provides comprehensive ear and hearing care through prevention, screening, diagnosis and active research.</p>
+          </article>
+
+          <article class="project-card">
+            <div class="icon">D</div>
+            <h3>Disability</h3>
+            <p>Disability promotion focuses on early detection, effective treatment, rehabilitation and stronger inclusion for children living with disabilities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="impact">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">Ndlovu Youth Choir</span>
+          <h2>An outstanding professional ensemble with roots in after-school development.</h2>
+          <p>
+            Since its inception in 2009, the choir has profoundly affected the lives of the choristers and demonstrates the potential of any human being to achieve excellence.
+          </p>
+        </div>
+
+        <div class="impact-grid">
+          <article class="impact-card">
+            <div class="icon">I</div>
+            <h3>Since 2009</h3>
+            <p>What began as an after-school activity has evolved into a truly outstanding professional ensemble.</p>
+          </article>
+          <article class="impact-card">
+            <div class="icon">II</div>
+            <h3>Excellence Beyond Background</h3>
+            <p>The choir reflects how talent, discipline and opportunity can create excellence regardless of background or place of birth.</p>
+          </article>
+          <article class="impact-card">
+            <div class="icon">III</div>
+            <h3>Human Potential</h3>
+            <p>The choir stands as a symbol of what is possible when young people are given support, structure and belief.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="partners">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">Our Partners</span>
+          <h2>Ndlovu Care Group is in partnership with leading organisations.</h2>
+          <p>
+            This section is ready for official partner logos and institutional marks.
+          </p>
+        </div>
+
+        <div class="partner-grid">
+          <div class="partner-box">Partner Logo</div>
+          <div class="partner-box">Partner Logo</div>
+          <div class="partner-box">Partner Logo</div>
+          <div class="partner-box">Partner Logo</div>
+          <div class="partner-box">Partner Logo</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section donation" id="donate">
+      <div class="container">
+        <div class="donation-box">
+          <span class="tag" style="color:#fff;">Make a Donation</span>
+          <h2 style="font-size:clamp(2rem,3vw,3.2rem);line-height:1.02;letter-spacing:-1px;">Effective interventions can break the cycle of poverty.</h2>
+          <p>
+            Because the organisation is not funded by government, donations help continue serving the communities of Sekhukhune District. Even small donations can make a significant difference.
+          </p>
+          <div class="hero-actions" style="margin-bottom:0;">
+            <a href="#contact" class="btn" style="background:#fff;color:var(--red);">Donate with PayPal</a>
+            <a href="#contact" class="btn" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22);">Thank You</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-box contact-info">
+          <span class="tag">Contact Us</span>
+          <h2 style="font-size:2.2rem;line-height:1.05;letter-spacing:-1px;margin-bottom:10px;">Get in touch with us.</h2>
+          <p>For general enquiries, partnerships, donations and programme information.</p>
+          <ul>
+            <li><strong>Address:</strong> 22 Witstinkhout Street, Groblersdal, 0470</li>
+            <li><strong>Email:</strong> info@ndlovu.com</li>
+            <li><strong>Head Office:</strong> +27 13 262 9000</li>
+          </ul>
+        </div>
+
+        <div class="form-box">
+          <form>
+            <input type="text" placeholder="Your Name" />
+            <input type="email" placeholder="Your Email" />
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Ndlovu Care Group. All rights reserved.</div>
+      <div>Healthcare, community development and skills training across Sekhukhune District.</div>
+    </div>
+  </footer>
+</body>
+</html>
